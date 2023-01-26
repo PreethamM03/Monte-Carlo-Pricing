@@ -1,3 +1,5 @@
+ #%%
+
 import matplotlib.pyplot as plt
 import numpy as np
 import math
@@ -24,7 +26,7 @@ class GeometricBrownianMotion:
         self.sim()
     
     def sim(self):
-        while (self.T -self.dt): #loops through each day (step)
+        while (self.T -self.dt)>0: #loops through each day (step)
             dWt = np.random.normal(0, math.sqrt(self.dt)) #Brownian Motion
             #dYt = Change in Price (exp ret*1 step + exp volat*brown motion)
             dYt = self.drift*self.dt +self.volatility*dWt
@@ -36,8 +38,9 @@ class GeometricBrownianMotion:
             self.T -= self.dt  # decrement by the step in time
 
 
-paths = 100
-initial_price = 100
+#Example Model Paramets
+paths = 50
+initial_price = 10
 drift = .08
 volatility = .1
 dt = 1/365
@@ -52,6 +55,7 @@ for i in range(0, paths):
 for price_path in price_paths:
     plt.plot(price_path)
 plt.show()
-            
+             
             
     
+# %%
